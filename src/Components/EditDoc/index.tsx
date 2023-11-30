@@ -5,7 +5,7 @@ import { useState,useRef,useEffect } from 'react';
 import {BiArrowBack} from 'react-icons/bi' 
 import ReactQuill from 'react-quill';
 import EditorToolbar, { modules,formats } from '../../Toolbar';
-import { editDoc,getCurrentDoc } from '../../API/Firestore';
+import { editDoc,getCurrentDoc,deleteDocument } from '../../API/Firestore';
 export default function EditDoc({handleEdit,id,docData} : functionInterface) {
     let quillRef = useRef<any>(null) ;
     const [value,setValue] = useState("") ;
@@ -18,7 +18,18 @@ export default function EditDoc({handleEdit,id,docData} : functionInterface) {
         let payload ={
             value,title
         } 
-        editDoc(payload,id) ;
+       
+     editDoc(payload,id) ;
+    }
+    const handling = ()  => {
+     // const jsonData = JSON.stringify(docData, null, 2);
+      
+        if(docData.title == "Untitled" && docData.value == ""){
+            deleteDocument(id) ;
+       }
+
+     console.log( id) ;
+            handleEdit() ;
     }
     useEffect(()=> {
      const debounced = setTimeout(() => {
@@ -37,12 +48,12 @@ export default function EditDoc({handleEdit,id,docData} : functionInterface) {
      quillRef.current.focus() ;
     }, []);
   useEffect(()=>{
-    setTitle(currentDocument.title) ;
-    setValue(currentDocument.value) ;
+    setTitle(docData.title) ;
+    setValue(docData.value) ;
   },[currentDocument])
     return (
    <div className='edit-container' >
-    <BiArrowBack onClick={handleEdit} size={30} className="react-icon" />
+    <BiArrowBack onClick={handling} size={30} className="react-icon" />
     <input onChange = {(event) => {
         setTitle(event?.target.value) ;
     }} value={title} className='title-input' placeholder='Untitled' />

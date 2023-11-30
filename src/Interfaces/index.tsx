@@ -1,5 +1,6 @@
 interface TopbarProps {
-    photoURL : string
+    photoURL : string;
+    handleLogout : () => void ;
 }
 interface functionInterface {
     id : string ; 
@@ -9,6 +10,6 @@ interface functionInterface {
        title : string 
       }
 }
-interface setterDoc {
+interface setterDoc { 
     setDocs : Function ;
 }

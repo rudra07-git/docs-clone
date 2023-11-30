@@ -7,12 +7,19 @@
     background-color:whitesmoke;
 }
 .top-image {
-    position: absolute;
-    right : 20px;
-    top : 20px;
+   // position: absolute;
+   // right : 20px;
+  //  top : 20px;
+  margin-left: 14px;
     width : 60px;
     border-radius : 50% ;
 }
+.topbar-right {
+    position: absolute;
+    right : 20px;
+    top : 20px;
+}
+
 .top-title{
      margin-left : 0px;
      font-size: 24px;

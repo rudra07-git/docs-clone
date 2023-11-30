@@ -1,7 +1,7 @@
 
 import './App.scss'
 import Docs from './Pages/Docs';
-import { app } from './firebaseConfig';
+//import { app } from './firebaseConfig';
 function App() {
   
 

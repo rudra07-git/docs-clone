@@ -4,7 +4,7 @@ import Topbar from "../Topbar"
 import CreateDoc from '../CreateDoc';
 import { getCurrentDoc } from '../../API/Firestore';
 import DocsList from '../DocsList';
-export default function Document({photoURL}:TopbarProps) {
+export default function Document({photoURL,handleLogout}:TopbarProps) {
   const [isEdit,setIsEdit] = useState(false) ;
   const [id,setId] = useState("") ;
   const [docData,setDocData] = useState({
@@ -27,7 +27,7 @@ export default function Document({photoURL}:TopbarProps) {
   };
   return (
     <div>
-        <Topbar photoURL = {photoURL} />
+        <Topbar handleLogout = {handleLogout} photoURL = {photoURL} />
         <CreateDoc id={id} docData={docData} isEdit = {isEdit}  handleEdit={handleEdit}/>
         { isEdit ? <></> :<DocsList openDoc = {openDoc} />}
     </div>

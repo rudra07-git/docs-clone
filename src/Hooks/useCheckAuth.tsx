@@ -1,6 +1,7 @@
 import  {useState,useEffect} from 'react'
 import { auth } from '../firebaseConfig'
 import { onAuthStateChanged } from 'firebase/auth'
+import { NULL } from 'sass';
 export default function useCheckAuth() {
     const [isAuthenticated,setIsAuth] = useState(false) ;
     const [userData,setUserData] = useState({
@@ -13,6 +14,7 @@ export default function useCheckAuth() {
           setIsAuth(true) ;
          }
          else{
+         // setUserData(NULL) ;
           setIsAuth(false) ;
          }
        }) ;

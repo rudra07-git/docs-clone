@@ -1,5 +1,5 @@
 import { auth, firestore } from "../firebaseConfig";
-import { addDoc,collection,doc,updateDoc,getDocs,getDoc} from "firebase/firestore";
+import { addDoc,collection,doc,updateDoc,getDocs,getDoc, deleteDoc} from "firebase/firestore";
   const docs = collection(firestore,'docs') ;
   type payloadType ={
     value : string,
@@ -11,6 +11,7 @@ import { addDoc,collection,doc,updateDoc,getDocs,getDoc} from "firebase/firestor
   export const getDocuments = (setDocs: any) => {
      getDocs(docs).then((response) => {
       setDocs(response.docs.map((doc)=> {
+        console.log(doc.data()) ;
              return ({...doc.data(),id:doc.id}) ;
            
      }) );
@@ -20,7 +21,7 @@ import { addDoc,collection,doc,updateDoc,getDocs,getDoc} from "firebase/firestor
 }
   export const editDoc = (payload : any,id : string) => {
     let docToEdit = doc(docs,id) ; 
-    updateDoc(docToEdit,payload, id) ;
+    updateDoc(docToEdit,payload,id) ;
   }
   export const getCurrentDoc = (id : string,setCurrentDocument:any) => {
     let docToGet = doc(docs,id) ; 
@@ -31,4 +32,8 @@ import { addDoc,collection,doc,updateDoc,getDocs,getDoc} from "firebase/firestor
     .catch((err) =>{
       console.log(err) ; 
     })
+  }
+  export const deleteDocument=async (id : string) => {
+    let docToDelete = doc(docs,id) ;
+    await deleteDoc(docToDelete) ;
   }

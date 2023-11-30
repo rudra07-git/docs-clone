@@ -14,14 +14,14 @@ type isEditType = {
 }
 export default function CreateDoc({isEdit,handleEdit,id,docData} : isEditType) {
   
-  const createDocument  = () => {
+  const createDocument  =  () => {
     let payload ={
       title : "Untitled", 
       value : "" ,
     };
-    createDoc(payload) ;
+     createDoc(payload) ;
   }
-  console.log(id) ;
+  //console.log(id) ;
   if(isEdit){
    return <EditDoc 
    docData={docData} 
